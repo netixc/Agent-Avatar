@@ -1,0 +1,6 @@
+character_config:
+  conf_name: "Mao (SDK 3)"
+  conf_uid: "mao_pro-001"
+  live2d_model_name: "mao_pro"
+  character_name: "Mao"
+  avatar: "mao.png"

@@ -1,0 +1,18 @@
+{
+	"version":"Sample 1.0.0",
+	"model":"model.moc",
+	"textures":[
+		"../common/textures/0.png",
+		"../common/textures/1.png",
+		"textures/2.png",
+		"textures/3.png",
+		"textures/4.png",
+		"textures/5.png"
+	],
+	"hit_areas":[
+		{"name":"chest", "id":"D_REF.PT_CHEST"},
+		{"name":"head", "id":"D_REF.PT_HEAD"},
+		{"name":"body", "id":"D_REF.PT_BODY"}
+	],
+	"physics":"physics.json"
+}

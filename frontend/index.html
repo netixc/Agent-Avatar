@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Agent Avatar</title>
+    <script src="./libs/live2dcubismcore.min.js"></script>
+    <script src="./libs/live2d.min.js"></script>
+    <script type="module" crossorigin src="./assets/main-DDZdil7B.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/main-6gNOTEMZ.css">
+  </head>
+
+  <body>
+    <div id="root"></div>
+    
+    <!-- Disable microphone access completely -->
+    <script>
+      // Override getUserMedia to disable microphone access
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia = function(constraints) {
+          console.log('[VTube] Microphone access disabled - getUserMedia blocked');
+          return Promise.reject(new Error('Microphone access disabled'));
+        };
+      }
+      
+      // Also override the older API
+      if (navigator.getUserMedia) {
+        navigator.getUserMedia = function(constraints, success, error) {
+          console.log('[VTube] Microphone access disabled - getUserMedia blocked (legacy)');
+          if (error) error(new Error('Microphone access disabled'));
+        };
+      }
+      
+      console.log('[VTube] Microphone access has been disabled');
+    </script>
+  </body>
+</html>

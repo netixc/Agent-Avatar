@@ -1,0 +1,6 @@
+character_config:
+  conf_name: "Asuna Outfit 24"
+  conf_uid: "asuna_24-001"
+  live2d_model_name: "asuna_24"
+  character_name: "Asuna"
+  avatar: "asuna.png"

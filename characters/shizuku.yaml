@@ -1,0 +1,6 @@
+character_config:
+  conf_name: "Shizuku"
+  conf_uid: "shizuku-001"
+  live2d_model_name: "shizuku"
+  character_name: "Shizuku"
+  avatar: "shizuku.png"

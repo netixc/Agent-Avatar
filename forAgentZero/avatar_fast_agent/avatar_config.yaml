@@ -1,0 +1,6 @@
+# Avatar Integration Configuration for avatar_fast_agent
+#
+# This configuration file contains settings for connecting to Agent-Avatar
+
+# Avatar Integration
+avatar_api_url: "http://localhost:12393"  # Agent-Avatar API endpoint

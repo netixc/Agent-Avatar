@@ -1,0 +1,84 @@
+# ignore the user configuration file
+conf.yaml
+
+# ignore non-default background images
+# /backgrounds/*
+
+# ignore non-default live2d models
+/assets/live2d-models/*
+!/assets/live2d-models/mao_pro
+!/assets/live2d-models/shizuku
+!/assets/live2d-models/asuna
+!/assets/live2d-models/liko
+!/assets/live2d-models/haru
+!/assets/live2d-models/epsilon
+!/assets/live2d-models/erika
+!/assets/live2d-models/kato
+!/assets/live2d-models/mirai
+!/assets/live2d-models/murakumo
+!/assets/live2d-models/tsukimi
+!/assets/live2d-models/wanko
+!/assets/live2d-models/yukari
+
+# ignore non-default character configs
+/config/characters/*
+# but all of the defaults are already tracked, so no need to un-ignore them
+
+# ignore avatars
+# avatars/*
+
+# macOS system files
+.DS_Store
+
+# Python files
+__pycache__/
+*.pyc
+lab.py
+.idea
+
+# Virtual environment
+.venv
+.conda
+conda
+
+# Pixi (removed - using uv only)
+pixi.lock
+.pixi/
+
+# Sensitive data
+.env
+api_keys.py
+src/open_llm_vtuber/llm/user_credentials.json
+
+# Database files
+memory.db
+memory.db.bk
+
+# Logs
+server.log
+logs/*
+
+# Cache and models
+cache/*
+src/open_llm_vtuber/tts/asset
+src/open_llm_vtuber/tts/config
+src/open_llm_vtuber/asr/models*
+!src/open_llm_vtuber/asr/models/silero_vad.onnx
+asset
+models/*
+!models/piper_voice
+models/piper_voice/*
+
+
+# Legacy and specific directories
+legacy/
+chat_history/
+knowledge_base/
+openapi_assistants.json
+openapi_memgpt.json
+
+# memory log
+mem.json
+conf.yaml.backup
+
+*.exe

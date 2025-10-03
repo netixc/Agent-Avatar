@@ -1,0 +1,812 @@
+[
+  {
+    "name": "asuna_13",
+    "description": "Asuna Outfit 13 (10 expressions)",
+    "url": "/assets/live2d-models/asuna/13/asuna_13.model.json",
+    "kScale": 0.6,
+    "initialXshift": 0,
+    "initialYshift": 0,
+    "kXOffset": 0,
+    "idleMotionGroupName": "idle",
+    "emotionMap": {
+      "neutral": 5,
+      "joy": 0,
+      "smirk": 4,
+      "sadness": 6,
+      "anger": 8,
+      "surprise": 7,
+      "fear": 7,
+      "disgust": 8
+    },
+    "tapMotions": {
+      "head": {"": 1},
+      "chest": {"": 1},
+      "body": {"": 1}
+    }
+  },
+  {
+    "name": "asuna_19",
+    "description": "Asuna Outfit 19 (10 expressions)",
+    "url": "/assets/live2d-models/asuna/19/asuna_19.model.json",
+    "kScale": 0.6,
+    "initialXshift": 0,
+    "initialYshift": 0,
+    "kXOffset": 0,
+    "idleMotionGroupName": "idle",
+    "emotionMap": {
+      "neutral": 5,
+      "joy": 0,
+      "smirk": 4,
+      "sadness": 6,
+      "anger": 8,
+      "surprise": 7,
+      "fear": 7,
+      "disgust": 8
+    },
+    "tapMotions": {
+      "head": {"": 1},
+      "chest": {"": 1},
+      "body": {"": 1}
+    }
+  },
+  {
+    "name": "asuna_20",
+    "description": "Asuna Outfit 20 (10 expressions)",
+    "url": "/assets/live2d-models/asuna/20/asuna_20.model.json",
+    "kScale": 0.6,
+    "initialXshift": 0,
+    "initialYshift": 0,
+    "kXOffset": 0,
+    "idleMotionGroupName": "idle",
+    "emotionMap": {
+      "neutral": 5,
+      "joy": 0,
+      "smirk": 4,
+      "sadness": 6,
+      "anger": 8,
+      "surprise": 7,
+      "fear": 7,
+      "disgust": 8
+    },
+    "tapMotions": {
+      "head": {"": 1},
+      "chest": {"": 1},
+      "body": {"": 1}
+    }
+  },
+  {
+    "name": "asuna_21",
+    "description": "Asuna Outfit 21 (10 expressions)",
+    "url": "/assets/live2d-models/asuna/21/asuna_21.model.json",
+    "kScale": 0.6,
+    "initialXshift": 0,
+    "initialYshift": 0,
+    "kXOffset": 0,
+    "idleMotionGroupName": "idle",
+    "emotionMap": {
+      "neutral": 5,
+      "joy": 0,
+      "smirk": 4,
+      "sadness": 6,
+      "anger": 8,
+      "surprise": 7,
+      "fear": 7,
+      "disgust": 8
+    },
+    "tapMotions": {
+      "head": {"": 1},
+      "chest": {"": 1},
+      "body": {"": 1}
+    }
+  },
+  {
+    "name": "asuna_22",
+    "description": "Asuna Outfit 22 (10 expressions)",
+    "url": "/assets/live2d-models/asuna/22/asuna_22.model.json",
+    "kScale": 0.6,
+    "initialXshift": 0,
+    "initialYshift": 0,
+    "kXOffset": 0,
+    "idleMotionGroupName": "idle",
+    "emotionMap": {
+      "neutral": 5,
+      "joy": 0,
+      "smirk": 4,
+      "sadness": 6,
+      "anger": 8,
+      "surprise": 7,
+      "fear": 7,
+      "disgust": 8
+    },
+    "tapMotions": {
+      "head": {"": 1},
+      "chest": {"": 1},
+      "body": {"": 1}
+    }
+  },
+  {
+    "name": "asuna_24",
+    "description": "Asuna Outfit 24 (10 expressions)",
+    "url": "/assets/live2d-models/asuna/24/asuna_24.model.json",
+    "kScale": 0.6,
+    "initialXshift": 0,
+    "initialYshift": 0,
+    "kXOffset": 0,
+    "idleMotionGroupName": "idle",
+    "emotionMap": {
+      "neutral": 5,
+      "joy": 0,
+      "smirk": 4,
+      "sadness": 6,
+      "anger": 8,
+      "surprise": 7,
+      "fear": 7,
+      "disgust": 8
+    },
+    "tapMotions": {
+      "head": {"": 1},
+      "chest": {"": 1},
+      "body": {"": 1}
+    }
+  },
+  {
+    "name": "asuna_25",
+    "description": "Asuna Outfit 25 (10 expressions)",
+    "url": "/assets/live2d-models/asuna/25/asuna_25.model.json",
+    "kScale": 0.6,
+    "initialXshift": 0,
+    "initialYshift": 0,
+    "kXOffset": 0,
+    "idleMotionGroupName": "idle",
+    "emotionMap": {
+      "neutral": 5,
+      "joy": 0,
+      "smirk": 4,
+      "sadness": 6,
+      "anger": 8,
+      "surprise": 7,
+      "fear": 7,
+      "disgust": 8
+    },
+    "tapMotions": {
+      "head": {"": 1},
+      "chest": {"": 1},
+      "body": {"": 1}
+    }
+  },
+  {
+    "name": "asuna_26",
+    "description": "Asuna Outfit 26 (10 expressions)",
+    "url": "/assets/live2d-models/asuna/26/asuna_26.model.json",
+    "kScale": 0.6,
+    "initialXshift": 0,
+    "initialYshift": 0,
+    "kXOffset": 0,
+    "idleMotionGroupName": "idle",
+    "emotionMap": {
+      "neutral": 5,
+      "joy": 0,
+      "smirk": 4,
+      "sadness": 6,
+      "anger": 8,
+      "surprise": 7,
+      "fear": 7,
+      "disgust": 8
+    },
+    "tapMotions": {
+      "head": {"": 1},
+      "chest": {"": 1},
+      "body": {"": 1}
+    }
+  },
+  {
+    "name": "asuna_27",
+    "description": "Asuna Outfit 27 (10 expressions)",
+    "url": "/assets/live2d-models/asuna/27/asuna_27.model.json",
+    "kScale": 0.6,
+    "initialXshift": 0,
+    "initialYshift": 0,
+    "kXOffset": 0,
+    "idleMotionGroupName": "idle",
+    "emotionMap": {
+      "neutral": 5,
+      "joy": 0,
+      "smirk": 4,
+      "sadness": 6,
+      "anger": 8,
+      "surprise": 7,
+      "fear": 7,
+      "disgust": 8
+    },
+    "tapMotions": {
+      "head": {"": 1},
+      "chest": {"": 1},
+      "body": {"": 1}
+    }
+  },
+  {
+    "name": "asuna_28",
+    "description": "Asuna Outfit 28 (10 expressions)",
+    "url": "/assets/live2d-models/asuna/28/asuna_28.model.json",
+    "kScale": 0.6,
+    "initialXshift": 0,
+    "initialYshift": 0,
+    "kXOffset": 0,
+    "idleMotionGroupName": "idle",
+    "emotionMap": {
+      "neutral": 5,
+      "joy": 0,
+      "smirk": 4,
+      "sadness": 6,
+      "anger": 8,
+      "surprise": 7,
+      "fear": 7,
+      "disgust": 8
+    },
+    "tapMotions": {
+      "head": {"": 1},
+      "chest": {"": 1},
+      "body": {"": 1}
+    }
+  },
+  {
+    "name": "asuna_29",
+    "description": "Asuna Outfit 29 (10 expressions)",
+    "url": "/assets/live2d-models/asuna/29/asuna_29.model.json",
+    "kScale": 0.6,
+    "initialXshift": 0,
+    "initialYshift": 0,
+    "kXOffset": 0,
+    "idleMotionGroupName": "idle",
+    "emotionMap": {
+      "neutral": 5,
+      "joy": 0,
+      "smirk": 4,
+      "sadness": 6,
+      "anger": 8,
+      "surprise": 7,
+      "fear": 7,
+      "disgust": 8
+    },
+    "tapMotions": {
+      "head": {"": 1},
+      "chest": {"": 1},
+      "body": {"": 1}
+    }
+  },
+  {
+    "name": "asuna_30",
+    "description": "Asuna Outfit 30 (10 expressions)",
+    "url": "/assets/live2d-models/asuna/30/asuna_30.model.json",
+    "kScale": 0.6,
+    "initialXshift": 0,
+    "initialYshift": 0,
+    "kXOffset": 0,
+    "idleMotionGroupName": "idle",
+    "emotionMap": {
+      "neutral": 5,
+      "joy": 0,
+      "smirk": 4,
+      "sadness": 6,
+      "anger": 8,
+      "surprise": 7,
+      "fear": 7,
+      "disgust": 8
+    },
+    "tapMotions": {
+      "head": {"": 1},
+      "chest": {"": 1},
+      "body": {"": 1}
+    }
+  },
+  {
+    "name": "asuna_33",
+    "description": "Asuna Outfit 33 (10 expressions)",
+    "url": "/assets/live2d-models/asuna/33/asuna_33.model.json",
+    "kScale": 0.6,
+    "initialXshift": 0,
+    "initialYshift": 0,
+    "kXOffset": 0,
+    "idleMotionGroupName": "idle",
+    "emotionMap": {
+      "neutral": 5,
+      "joy": 0,
+      "smirk": 4,
+      "sadness": 6,
+      "anger": 8,
+      "surprise": 7,
+      "fear": 7,
+      "disgust": 8
+    },
+    "tapMotions": {
+      "head": {"": 1},
+      "chest": {"": 1},
+      "body": {"": 1}
+    }
+  },
+  {
+    "name": "asuna_34",
+    "description": "Asuna Outfit 34 (10 expressions)",
+    "url": "/assets/live2d-models/asuna/34/asuna_34.model.json",
+    "kScale": 0.6,
+    "initialXshift": 0,
+    "initialYshift": 0,
+    "kXOffset": 0,
+    "idleMotionGroupName": "idle",
+    "emotionMap": {
+      "neutral": 5,
+      "joy": 0,
+      "smirk": 4,
+      "sadness": 6,
+      "anger": 8,
+      "surprise": 7,
+      "fear": 7,
+      "disgust": 8
+    },
+    "tapMotions": {
+      "head": {"": 1},
+      "chest": {"": 1},
+      "body": {"": 1}
+    }
+  },
+  {
+    "name": "asuna_35",
+    "description": "Asuna Outfit 35 (10 expressions)",
+    "url": "/assets/live2d-models/asuna/35/asuna_35.model.json",
+    "kScale": 0.6,
+    "initialXshift": 0,
+    "initialYshift": 0,
+    "kXOffset": 0,
+    "idleMotionGroupName": "idle",
+    "emotionMap": {
+      "neutral": 5,
+      "joy": 0,
+      "smirk": 4,
+      "sadness": 6,
+      "anger": 8,
+      "surprise": 7,
+      "fear": 7,
+      "disgust": 8
+    },
+    "tapMotions": {
+      "head": {"": 1},
+      "chest": {"": 1},
+      "body": {"": 1}
+    }
+  },
+  {
+    "name": "asuna_46",
+    "description": "Asuna Outfit 46 (10 expressions)",
+    "url": "/assets/live2d-models/asuna/46/asuna_46.model.json",
+    "kScale": 0.6,
+    "initialXshift": 0,
+    "initialYshift": 0,
+    "kXOffset": 0,
+    "idleMotionGroupName": "idle",
+    "emotionMap": {
+      "neutral": 5,
+      "joy": 0,
+      "smirk": 4,
+      "sadness": 6,
+      "anger": 8,
+      "surprise": 7,
+      "fear": 7,
+      "disgust": 8
+    },
+    "tapMotions": {
+      "head": {"": 1},
+      "chest": {"": 1},
+      "body": {"": 1}
+    }
+  },
+  {
+    "name": "liko_01",
+    "description": "Liko Outfit 1 (10 expressions)",
+    "url": "/assets/live2d-models/liko/01.json",
+    "kScale": 0.7,
+    "initialXshift": 0,
+    "initialYshift": 0,
+    "kXOffset": 0,
+    "idleMotionGroupName": "idle",
+    "emotionMap": {
+      "neutral": 5,
+      "joy": 0,
+      "smirk": 2,
+      "sadness": 6,
+      "anger": 8,
+      "surprise": 7,
+      "fear": 6,
+      "disgust": 8
+    },
+    "tapMotions": {}
+  },
+  {
+    "name": "liko_02",
+    "description": "Liko Outfit 2 (10 expressions)",
+    "url": "/assets/live2d-models/liko/02.json",
+    "kScale": 0.7,
+    "initialXshift": 0,
+    "initialYshift": 0,
+    "kXOffset": 0,
+    "idleMotionGroupName": "idle",
+    "emotionMap": {
+      "neutral": 5,
+      "joy": 0,
+      "smirk": 2,
+      "sadness": 6,
+      "anger": 8,
+      "surprise": 7,
+      "fear": 6,
+      "disgust": 8
+    },
+    "tapMotions": {}
+  },
+  {
+    "name": "liko_03",
+    "description": "Liko Outfit 3 (10 expressions)",
+    "url": "/assets/live2d-models/liko/03.json",
+    "kScale": 0.7,
+    "initialXshift": 0,
+    "initialYshift": 0,
+    "kXOffset": 0,
+    "idleMotionGroupName": "idle",
+    "emotionMap": {
+      "neutral": 5,
+      "joy": 0,
+      "smirk": 2,
+      "sadness": 6,
+      "anger": 8,
+      "surprise": 7,
+      "fear": 6,
+      "disgust": 8
+    },
+    "tapMotions": {}
+  },
+  {
+    "name": "liko_04",
+    "description": "Liko Outfit 4 (10 expressions)",
+    "url": "/assets/live2d-models/liko/04.json",
+    "kScale": 0.7,
+    "initialXshift": 0,
+    "initialYshift": 0,
+    "kXOffset": 0,
+    "idleMotionGroupName": "idle",
+    "emotionMap": {
+      "neutral": 5,
+      "joy": 0,
+      "smirk": 2,
+      "sadness": 6,
+      "anger": 8,
+      "surprise": 7,
+      "fear": 6,
+      "disgust": 8
+    },
+    "tapMotions": {}
+  },
+  {
+    "name": "liko_07",
+    "description": "Liko Outfit 7 (10 expressions)",
+    "url": "/assets/live2d-models/liko/07.json",
+    "kScale": 0.7,
+    "initialXshift": 0,
+    "initialYshift": 0,
+    "kXOffset": 0,
+    "idleMotionGroupName": "idle",
+    "emotionMap": {
+      "neutral": 5,
+      "joy": 0,
+      "smirk": 2,
+      "sadness": 6,
+      "anger": 8,
+      "surprise": 7,
+      "fear": 6,
+      "disgust": 8
+    },
+    "tapMotions": {}
+  },
+  {
+    "name": "liko_09",
+    "description": "Liko Outfit 9 (10 expressions)",
+    "url": "/assets/live2d-models/liko/09.json",
+    "kScale": 0.7,
+    "initialXshift": 0,
+    "initialYshift": 0,
+    "kXOffset": 0,
+    "idleMotionGroupName": "idle",
+    "emotionMap": {
+      "neutral": 5,
+      "joy": 0,
+      "smirk": 2,
+      "sadness": 6,
+      "anger": 8,
+      "surprise": 7,
+      "fear": 6,
+      "disgust": 8
+    },
+    "tapMotions": {}
+  },
+  {
+    "name": "liko_10",
+    "description": "Liko Outfit 10 (10 expressions)",
+    "url": "/assets/live2d-models/liko/10.json",
+    "kScale": 0.7,
+    "initialXshift": 0,
+    "initialYshift": 0,
+    "kXOffset": 0,
+    "idleMotionGroupName": "idle",
+    "emotionMap": {
+      "neutral": 5,
+      "joy": 0,
+      "smirk": 2,
+      "sadness": 6,
+      "anger": 8,
+      "surprise": 7,
+      "fear": 6,
+      "disgust": 8
+    },
+    "tapMotions": {}
+  },
+  {
+    "name": "liko_12",
+    "description": "Liko Outfit 12 (10 expressions)",
+    "url": "/assets/live2d-models/liko/12.json",
+    "kScale": 0.7,
+    "initialXshift": 0,
+    "initialYshift": 0,
+    "kXOffset": 0,
+    "idleMotionGroupName": "idle",
+    "emotionMap": {
+      "neutral": 5,
+      "joy": 0,
+      "smirk": 2,
+      "sadness": 6,
+      "anger": 8,
+      "surprise": 7,
+      "fear": 6,
+      "disgust": 8
+    },
+    "tapMotions": {}
+  },
+  {
+    "name": "liko_14",
+    "description": "Liko Outfit 14 (10 expressions)",
+    "url": "/assets/live2d-models/liko/14.json",
+    "kScale": 0.7,
+    "initialXshift": 0,
+    "initialYshift": 0,
+    "kXOffset": 0,
+    "idleMotionGroupName": "idle",
+    "emotionMap": {
+      "neutral": 5,
+      "joy": 0,
+      "smirk": 2,
+      "sadness": 6,
+      "anger": 8,
+      "surprise": 7,
+      "fear": 6,
+      "disgust": 8
+    },
+    "tapMotions": {}
+  },
+  {
+    "name": "liko_15",
+    "description": "Liko Outfit 15 (10 expressions)",
+    "url": "/assets/live2d-models/liko/15.json",
+    "kScale": 0.7,
+    "initialXshift": 0,
+    "initialYshift": 0,
+    "kXOffset": 0,
+    "idleMotionGroupName": "idle",
+    "emotionMap": {
+      "neutral": 5,
+      "joy": 0,
+      "smirk": 2,
+      "sadness": 6,
+      "anger": 8,
+      "surprise": 7,
+      "fear": 6,
+      "disgust": 8
+    },
+    "tapMotions": {}
+  },
+  {
+    "name": "haru_02",
+    "description": "Haru Outfit 2 (5 expressions)",
+    "url": "/assets/live2d-models/haru/02.json",
+    "kScale": 0.7,
+    "initialXshift": 0,
+    "initialYshift": 0,
+    "kXOffset": 0,
+    "idleMotionGroupName": "idle",
+    "emotionMap": {
+      "neutral": 0,
+      "joy": 1,
+      "surprise": 2,
+      "smirk": 3,
+      "sadness": 4,
+      "anger": 4,
+      "fear": 4,
+      "disgust": 4
+    },
+    "tapMotions": {
+      "head": {
+        "": 1
+      },
+      "body": {
+        "tap_body": 1
+      }
+    }
+  },
+  {
+    "name": "epsilon",
+    "description": "Epsilon (8 expressions)",
+    "url": "/assets/live2d-models/epsilon/01.json",
+    "kScale": 0.7,
+    "initialXshift": 0,
+    "initialYshift": 0,
+    "kXOffset": 0,
+    "idleMotionGroupName": "idle",
+    "emotionMap": {
+      "neutral": 5,
+      "joy": 6,
+      "sadness": 4,
+      "anger": 0,
+      "surprise": 3,
+      "fear": 2,
+      "disgust": 0,
+      "smirk": 1
+    },
+    "tapMotions": {}
+  },
+  {
+    "name": "kato",
+    "description": "Kato Megumi (6 expressions)",
+    "url": "/assets/live2d-models/kato/01.json",
+    "kScale": 0.7,
+    "initialXshift": 0,
+    "initialYshift": 0,
+    "kXOffset": 0,
+    "idleMotionGroupName": "idle",
+    "emotionMap": {
+      "neutral": 3,
+      "joy": 2,
+      "sadness": 4,
+      "anger": 0,
+      "surprise": 5,
+      "fear": 4,
+      "disgust": 1,
+      "smirk": 2
+    },
+    "tapMotions": {
+      "head": {
+        "": 1
+      }
+    }
+  },
+  {
+    "name": "tsukimi",
+    "description": "Tsukimi (10 expressions)",
+    "url": "/assets/live2d-models/tsukimi/01.json",
+    "kScale": 0.7,
+    "initialXshift": 0,
+    "initialYshift": 0,
+    "kXOffset": 0,
+    "idleMotionGroupName": "idle",
+    "emotionMap": {
+      "neutral": 0,
+      "joy": 1,
+      "sadness": 2,
+      "anger": 3,
+      "surprise": 4,
+      "fear": 5,
+      "disgust": 6,
+      "smirk": 7
+    },
+    "tapMotions": {}
+  },
+  {
+    "name": "shizuku",
+    "description": "Shizuku (4 expressions)",
+    "url": "/assets/live2d-models/shizuku/shizuku.model.json",
+    "kScale": 0.8,
+    "initialXshift": 0,
+    "initialYshift": 0,
+    "kXOffset": 0,
+    "idleMotionGroupName": "idle",
+    "emotionMap": {
+      "neutral": 0,
+      "sadness": 1,
+      "anger": 2,
+      "joy": 3,
+      "surprise": 1,
+      "fear": 1,
+      "disgust": 2,
+      "smirk": 3
+    },
+    "tapMotions": {
+      "HitAreaHead": {
+        "flick_head": 1
+      },
+      "HitAreaBody": {
+        "tap_body": 1
+      }
+    }
+  },
+  {
+    "name": "mao_pro",
+    "description": "Mao (8 expressions, SDK 3)",
+    "url": "/assets/live2d-models/mao_pro/mao_pro.model3.json",
+    "kScale": 0.5,
+    "initialXshift": 0,
+    "initialYshift": 0,
+    "kXOffset": 1150,
+    "idleMotionGroupName": "Idle",
+    "emotionMap": {
+      "neutral": 0,
+      "anger": 4,
+      "disgust": 6,
+      "fear": 6,
+      "joy": 3,
+      "smirk": 5,
+      "sadness": 7,
+      "surprise": 6
+    },
+    "tapMotions": {
+      "HitAreaHead": {
+        "": 1
+      },
+      "HitAreaBody": {
+        "": 1
+      }
+    }
+  },
+  {
+    "name": "natori",
+    "description": "Natori (11 expressions, SDK 3)",
+    "url": "/assets/live2d-models/natori/Natori.model3.json",
+    "kScale": 0.7,
+    "initialXshift": 0,
+    "initialYshift": 0,
+    "kXOffset": 0,
+    "idleMotionGroupName": "Idle",
+    "emotionMap": {
+      "neutral": 2,
+      "joy": 4,
+      "sadness": 3,
+      "anger": 0,
+      "surprise": 5,
+      "fear": 3,
+      "disgust": 0,
+      "smirk": 1
+    },
+    "tapMotions": {
+      "HitAreaHead": {
+        "": 1
+      },
+      "HitAreaBody": {
+        "TapBody": 5
+      }
+    }
+  },
+  {
+    "name": "raynos",
+    "description": "RAYNOS-chan (8 expressions, SDK 3)",
+    "url": "/assets/live2d-models/raynos/RAYNOS-chan_ver1.0.0.model3.json",
+    "kScale": 0.7,
+    "initialXshift": 0,
+    "initialYshift": 0,
+    "kXOffset": 0,
+    "idleMotionGroupName": "",
+    "emotionMap": {
+      "neutral": 0,
+      "joy": 3,
+      "sadness": 4,
+      "anger": 4,
+      "surprise": 6,
+      "fear": 6,
+      "disgust": 4,
+      "smirk": 5
+    },
+    "tapMotions": {}
+  }
+]

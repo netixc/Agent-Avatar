@@ -1,0 +1,181 @@
+"""
+Agent-Zero LLM implementation that connects to Agent-Zero API
+"""
+from typing import AsyncGenerator, List, Dict, Any, Optional, Union
+import asyncio
+from loguru import logger
+
+from ..output_types import SentenceOutput, DisplayText, Actions
+from ...agent_zero_client import get_agent_zero_client
+from ...live2d_model import Live2dModel
+
+# Emotion extraction now handled per-sentence in transformers.py
+# No global state needed
+
+
+class AgentZeroLLM:
+    """LLM implementation that uses Agent-Zero as the backend"""
+
+    def __init__(self, **kwargs):
+        """Initialize Agent-Zero LLM"""
+        self.client = get_agent_zero_client()
+        logger.info("Agent-Zero LLM initialized")
+
+    def _should_use_vision(self, text: str) -> bool:
+        """Determine if the message requires vision/image analysis"""
+        if not text:
+            return False
+
+        text_lower = text.lower()
+
+        # Vision-related keywords
+        vision_keywords = [
+            # Direct camera/image references
+            'camera', 'photo', 'picture', 'image', 'screenshot', 'screen',
+            'see', 'look', 'watch', 'view', 'show', 'display',
+
+            # Visual analysis
+            'what do you see', 'what is in', 'describe', 'identify',
+            'what am i', 'who am i', 'how do i look', 'what\'s in front',
+
+            # Visual questions
+            'what color', 'what does', 'what is this', 'what are these',
+            'can you see', 'do you see', 'read this', 'what text',
+
+            # Specific visual tasks
+            'wearing', 'background', 'room', 'lighting', 'expression'
+        ]
+
+        return any(keyword in text_lower for keyword in vision_keywords)
+
+    async def chat_completion(
+        self,
+        messages: List[Dict[str, Any]],
+        model: str = "agent-zero",
+        temperature: float = 1.0,
+        live2d_model: Optional[Live2dModel] = None,
+        **kwargs
+    ) -> AsyncGenerator[str, None]:
+        """
+        Generate chat completion using Agent-Zero
+
+        Args:
+            messages: List of message dictionaries
+            model: Model name (ignored, uses Agent-Zero)
+            temperature: Temperature (ignored, uses Agent-Zero settings)
+            **kwargs: Additional parameters (ignored)
+
+        Yields:
+            str: Response chunks from Agent-Zero (expressions handled by transformers)
+        """
+        try:
+
+            # Enhanced debugging and BatchInput handling
+            logger.debug(f"Received messages type: {type(messages)}")
+            logger.debug(f"Messages object: {messages}")
+
+            # Handle case where messages might be a BatchInput object or not iterable
+            images_data = []
+            if hasattr(messages, 'texts'):
+                logger.debug("Converting BatchInput to message format")
+
+                # Extract images if present
+                if hasattr(messages, 'images') and messages.images:
+                    logger.info(f"Found {len(messages.images)} images in BatchInput")
+                    for img_data in messages.images:
+                        logger.debug(f"Processing image: source={img_data.source}, mime_type={img_data.mime_type}")
+                        source_value = img_data.source.value if hasattr(img_data.source, 'value') else str(img_data.source)
+                        images_data.append({
+                            "source": source_value,
+                            "data": img_data.data,
+                            "mime_type": img_data.mime_type
+                        })
+
+                # Convert BatchInput to message format
+                actual_messages = []
+                for text_data in messages.texts:
+                    logger.debug(f"Processing text_data: {text_data}")
+                    if hasattr(text_data, 'source') and hasattr(text_data, 'content'):
+                        # Handle different source types (enum vs string)
+                        source_value = text_data.source.value if hasattr(text_data.source, 'value') else str(text_data.source)
+                        logger.debug(f"Source value: {source_value}")
+
+                        if source_value.upper() in ["INPUT", "USER"]:
+                            actual_messages.append({"role": "user", "content": text_data.content})
+                        elif source_value.upper() in ["SYSTEM"]:
+                            actual_messages.append({"role": "system", "content": text_data.content})
+                        else:
+                            # Default to user for unknown sources
+                            actual_messages.append({"role": "user", "content": text_data.content})
+                    else:
+                        logger.warning(f"Unexpected text_data structure: {text_data}")
+                messages = actual_messages
+                logger.debug(f"Converted messages: {messages}")
+            elif not isinstance(messages, list):
+                logger.error(f"Unexpected messages type: {type(messages)}, value: {messages}")
+                # Try to convert to list if it's iterable but not a list
+                try:
+                    messages = list(messages)
+                    logger.debug(f"Converted to list: {messages}")
+                except TypeError:
+                    logger.error("Cannot convert messages to list, using empty list")
+                    messages = []
+
+            # Extract the user message
+            user_message = ""
+            system_prompt = ""
+
+            for message in messages:
+                if message.get("role") == "user":
+                    content = message.get("content", "")
+                    if isinstance(content, list):
+                        # Handle multimodal content
+                        for item in content:
+                            if item.get("type") == "text":
+                                user_message = item.get("text", "")
+                                break
+                    else:
+                        user_message = content
+                elif message.get("role") == "system":
+                    system_prompt = message.get("content", "")
+
+            # Agent-Zero API now handles emotion instructions
+            full_message = user_message
+
+            logger.debug(f"Sending to Agent-Zero: {full_message}")
+
+            # Only send images if the user's message suggests they want vision
+            should_send_images = self._should_use_vision(full_message)
+            if images_data and not should_send_images:
+                logger.info(f"Camera enabled but message doesn't require vision - skipping images")
+                images_data = None
+            elif images_data and should_send_images:
+                logger.info(f"Sending {len(images_data)} images to Agent-Zero (vision required)")
+
+            # Use streaming Agent-Zero API
+            # Note: Real-time streaming happens via Agent-Zero's VTube intercept extension
+            # which POSTs chunks directly to VTube's /stream/{history_uid} endpoint.
+            # We don't need to yield chunks here since the intercept extension handles it
+            # Yielding here causes duplicate responses in the frontend
+            full_response = ""
+            async for chunk in self.client.send_message_streaming(
+                text=full_message,
+                message_type="text",
+                user_id="vtube_user",
+                images=images_data if images_data else None
+            ):
+                if chunk.strip():
+                    logger.debug(f"Received chunk from Agent-Zero: {chunk[:50]}...")
+                    full_response += chunk.strip() + " "
+                    # Don't yield - intercept extension handles streaming
+                    await asyncio.sleep(0.05)
+
+            # Don't yield anything - the intercept extension already sent everything to VTube
+            # This prevents double processing
+            logger.debug("Agent-Zero streaming complete, no yield (intercept handled it)")
+
+        except Exception as e:
+            logger.error(f"Error in Agent-Zero LLM: {e}")
+            # Exception response
+            error_text = "Sorry, I encountered an error processing your request."
+            yield error_text

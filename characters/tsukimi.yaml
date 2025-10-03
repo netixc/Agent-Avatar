@@ -1,0 +1,6 @@
+character_config:
+  conf_name: "Tsukimi"
+  conf_uid: "tsukimi-001"
+  live2d_model_name: "tsukimi"
+  character_name: "Tsukimi"
+  avatar: "tsukimi.png"

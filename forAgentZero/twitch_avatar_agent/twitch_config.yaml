@@ -1,0 +1,22 @@
+# Twitch Integration Configuration for twitch_avatar_agent
+#
+# How to get Twitch credentials:
+# 1. Go to https://twitchtokengenerator.com/
+# 2. Select "Bot Chat Token"
+# 3. Copy the ACCESS TOKEN as your oauth_token (add "oauth:" prefix)
+# 4. Copy the CLIENT ID as your client_id
+
+oauth_token: "oauth:your_access_token_here"
+channel: "your_channel"
+bot_name: "your_bot_name"
+client_id: "your_client_id_here"
+client_secret: "your_client_secret_here"
+bot_id: "your_bot_id_here"
+
+# Optional settings (with defaults)
+send_to_chat: true              # Send AI responses back to Twitch chat
+message_prefix: "[Twitch]"      # Prefix for messages sent to Agent-Zero
+chat_max_length: 500            # Max chat message length (Twitch limit is 500)
+
+# Avatar Integration
+avatar_api_url: "http://localhost:12393"  # Agent-Avatar API endpoint

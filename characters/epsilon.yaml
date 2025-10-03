@@ -1,0 +1,6 @@
+character_config:
+  conf_name: "Epsilon"
+  conf_uid: "epsilon-001"
+  live2d_model_name: "epsilon"
+  character_name: "Epsilon"
+  avatar: "epsilon.png"

@@ -1,0 +1,306 @@
+"""
+Client for communicating with Agent-Zero API.
+Handles sending messages and receiving responses from Agent-Zero.
+"""
+
+import asyncio
+import aiohttp
+import json
+from typing import Optional, Dict, Any
+from loguru import logger
+
+
+class AgentZeroClient:
+    """Client for bidirectional communication with Agent-Zero"""
+
+    def __init__(
+        self,
+        base_url: str = "http://192.168.50.67:50080",
+        context_id: Optional[str] = None,
+        enabled: bool = False
+    ):
+        """
+        Initialize the Agent-Zero client.
+
+        Args:
+            base_url: Base URL for Agent-Zero API (default: http://localhost:50001)
+            context_id: Optional context ID for maintaining conversation state
+            enabled: Whether the client is enabled
+        """
+        self.base_url = base_url.rstrip("/")
+        self.context_id = context_id or "vtube_context"
+        self.enabled = enabled
+        self.session: Optional[aiohttp.ClientSession] = None
+
+    async def __aenter__(self):
+        """Async context manager entry"""
+        if self.enabled:
+            self.session = aiohttp.ClientSession()
+        return self
+
+    async def __aexit__(self, exc_type, exc_val, exc_tb):
+        """Async context manager exit"""
+        if self.session:
+            await self.session.close()
+
+    async def send_message_streaming(
+        self,
+        text: str,
+        message_type: str = "text",
+        user_id: str = "vtube_user",
+        confidence: Optional[float] = None,
+        images: Optional[list] = None
+    ):
+        """
+        Send a message to Agent-Zero and yield streaming chunks as they arrive.
+        This version doesn't wait for complete response - yields chunks in real-time.
+        """
+        if not self.enabled:
+            logger.debug("Agent-Zero client is disabled, skipping streaming message send")
+            yield "Agent-Zero is disabled."
+            return
+
+        if not text or not text.strip():
+            logger.warning("Empty message text, skipping streaming")
+            yield "Empty message received."
+            return
+
+        # Prepare the payload
+        payload = {
+            "text": text,
+            "source": "vtube",
+            "context": self.context_id,
+            "type": message_type,
+            "user_id": user_id
+        }
+
+        if confidence is not None and message_type == "audio_transcription":
+            payload["confidence"] = confidence
+
+        # Add images if provided
+        if images:
+            payload["images"] = images
+            logger.info(f"Including {len(images)} images in streaming Agent-Zero message")
+
+        try:
+            # Create session if not exists
+            if not self.session:
+                self.session = aiohttp.ClientSession()
+
+            url = f"{self.base_url}/vtube_message_stream"
+            logger.info(f"Sending streaming message to Agent-Zero: {text[:50]}...")
+
+            # Start the streaming request
+            async with self.session.post(
+                url,
+                json=payload,
+                headers={"Content-Type": "application/json"},
+                timeout=aiohttp.ClientTimeout(total=300)  # Longer timeout for streaming
+            ) as response:
+                if response.status == 200:
+                    # Read the response as it streams
+                    async for line in response.content:
+                        try:
+                            if line:
+                                chunk_data = json.loads(line.decode().strip())
+                                if chunk_data.get("type") == "chunk":
+                                    chunk_text = chunk_data.get("text", "")
+                                    if chunk_text:
+                                        logger.debug(f"Streaming chunk: {chunk_text[:30]}...")
+                                        yield chunk_text
+                                elif chunk_data.get("type") == "final":
+                                    # Final response received
+                                    final_text = chunk_data.get("text", "")
+                                    logger.info(f"Agent-Zero streaming complete: {len(final_text)} chars")
+                                    if final_text:
+                                        yield final_text
+                                    return
+                        except json.JSONDecodeError:
+                            # Skip invalid JSON lines
+                            continue
+                        except Exception as e:
+                            logger.error(f"Error processing streaming chunk: {e}")
+                            continue
+                else:
+                    error_text = await response.text()
+                    logger.error(f"Agent-Zero streaming API error ({response.status}): {error_text}")
+                    yield "Sorry, I encountered an error processing your request."
+
+        except asyncio.TimeoutError:
+            logger.error("Timeout while streaming from Agent-Zero")
+            yield "Sorry, the response took too long to generate."
+        except aiohttp.ClientError as e:
+            logger.error(f"Network error during Agent-Zero streaming: {e}")
+            yield "Sorry, I encountered a network error."
+        except Exception as e:
+            logger.error(f"Unexpected error during Agent-Zero streaming: {e}")
+            yield "Sorry, I encountered an unexpected error."
+
+    async def send_message(
+        self,
+        text: str,
+        message_type: str = "text",
+        user_id: str = "vtube_user",
+        confidence: Optional[float] = None,
+        images: Optional[list] = None
+    ) -> Optional[Dict[str, Any]]:
+        """
+        Send a message to Agent-Zero.
+
+        Args:
+            text: The message text to send
+            message_type: Type of message ('text' or 'audio_transcription')
+            user_id: User identifier
+            confidence: Confidence score for audio transcriptions
+            images: Optional list of base64 encoded images with metadata
+
+        Returns:
+            Response from Agent-Zero or None if disabled/failed
+        """
+        if not self.enabled:
+            logger.debug("Agent-Zero client is disabled, skipping message send")
+            return None
+
+        if not text or not text.strip():
+            logger.warning("Empty message text, skipping")
+            return None
+
+        # Prepare the payload
+        payload = {
+            "text": text,
+            "source": "vtube",
+            "context": self.context_id,
+            "type": message_type,
+            "user_id": user_id
+        }
+
+        if confidence is not None and message_type == "audio_transcription":
+            payload["confidence"] = confidence
+
+        # Add images if provided
+        if images:
+            payload["images"] = images
+            logger.info(f"Including {len(images)} images in Agent-Zero message")
+
+        try:
+            # Create session if not exists
+            if not self.session:
+                self.session = aiohttp.ClientSession()
+
+            # Send POST request to Agent-Zero
+            url = f"{self.base_url}/vtube_message"
+            logger.info(f"Sending message to Agent-Zero: {text[:50]}...")
+            logger.debug(f"Full payload: {payload}")
+
+            async with self.session.post(
+                url,
+                json=payload,
+                headers={"Content-Type": "application/json"},
+                timeout=aiohttp.ClientTimeout(total=120)  # Increased for vision processing
+            ) as response:
+                if response.status == 200:
+                    data = await response.json()
+                    logger.info(f"Received response from Agent-Zero: {data.get('success')}")
+                    return data
+                else:
+                    error_text = await response.text()
+                    logger.error(f"Agent-Zero API error ({response.status}): {error_text}")
+                    return None
+
+        except asyncio.TimeoutError:
+            logger.error("Timeout while sending message to Agent-Zero")
+            return None
+        except aiohttp.ClientError as e:
+            logger.error(f"Network error communicating with Agent-Zero: {e}")
+            return None
+        except Exception as e:
+            logger.error(f"Unexpected error sending message to Agent-Zero: {e}")
+            return None
+
+    async def send_audio_transcription(
+        self,
+        transcribed_text: str,
+        confidence: float,
+        user_id: str = "vtube_user"
+    ) -> Optional[Dict[str, Any]]:
+        """
+        Send an audio transcription to Agent-Zero.
+
+        Args:
+            transcribed_text: The transcribed text from audio
+            confidence: Confidence score of the transcription
+            user_id: User identifier
+
+        Returns:
+            Response from Agent-Zero or None if disabled/failed
+        """
+        return await self.send_message(
+            text=transcribed_text,
+            message_type="audio_transcription",
+            user_id=user_id,
+            confidence=confidence
+        )
+
+    def set_enabled(self, enabled: bool):
+        """Enable or disable the Agent-Zero client"""
+        self.enabled = enabled
+        if enabled:
+            logger.info("Agent-Zero client enabled")
+        else:
+            logger.info("Agent-Zero client disabled")
+
+    def set_context_id(self, context_id: str):
+        """Update the context ID for the conversation"""
+        self.context_id = context_id
+        logger.info(f"Updated Agent-Zero context ID to: {context_id}")
+
+    def set_context_from_history(self, history_uid: str):
+        """
+        Set Agent-Zero context ID based on VTube history UID.
+        This ensures each VTube chat creates a separate Agent-Zero context.
+
+        Args:
+            history_uid: VTube history UID (e.g., "2025-01-15_14-30-45_abc123")
+        """
+        if history_uid:
+            new_context_id = f"vtube_{history_uid}"
+            self.set_context_id(new_context_id)
+            logger.info(f"Synced Agent-Zero context with VTube history: {history_uid}")
+        else:
+            # Fall back to default if no history_uid provided
+            self.set_context_id("vtube_context")
+            logger.warning("No history_uid provided, using default context")
+
+
+# Global instance for easy access
+_agent_zero_client: Optional[AgentZeroClient] = None
+
+
+def get_agent_zero_client() -> AgentZeroClient:
+    """Get the global Agent-Zero client instance"""
+    global _agent_zero_client
+    if _agent_zero_client is None:
+        _agent_zero_client = AgentZeroClient()
+    return _agent_zero_client
+
+
+def init_agent_zero_client(
+    base_url: str = "http://192.168.50.67:50080",
+    context_id: Optional[str] = None,
+    enabled: bool = False
+) -> AgentZeroClient:
+    """
+    Initialize the global Agent-Zero client.
+
+    Args:
+        base_url: Base URL for Agent-Zero API
+        context_id: Optional context ID for maintaining conversation state
+        enabled: Whether the client is enabled
+
+    Returns:
+        The initialized client
+    """
+    global _agent_zero_client
+    _agent_zero_client = AgentZeroClient(base_url, context_id, enabled)
+    logger.info(f"Agent-Zero client initialized (enabled={enabled})")
+    return _agent_zero_client

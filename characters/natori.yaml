@@ -1,0 +1,6 @@
+character_config:
+  conf_name: "Natori (SDK 3)"
+  conf_uid: "natori-001"
+  live2d_model_name: "natori"
+  character_name: "Natori"
+  avatar: "natori.png"

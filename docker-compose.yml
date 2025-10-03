@@ -1,0 +1,33 @@
+services:
+  vtube:
+    build:
+      context: .
+      dockerfile: dockerfile
+    container_name: Agent-Avatar
+    ports:
+      - "12393:12393"
+    volumes:
+      # Mount the config directory for persistent settings (read-write for config updates)
+      - ./conf.yaml:/app/conf.yaml:rw
+      - ./chat_history:/app/chat_history
+      - ./models:/app/models
+      - ./config/characters:/app/config/characters
+      # Mount source code for live development without rebuilding
+      - ./src:/app/src:rw
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    restart: unless-stopped
+    networks:
+      - Avatar-network
+
+networks:
+  Avatar-network:
+    driver: bridge

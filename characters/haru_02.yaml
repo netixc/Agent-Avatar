@@ -1,0 +1,6 @@
+character_config:
+  conf_name: "Haru Outfit 2"
+  conf_uid: "haru_02-001"
+  live2d_model_name: "haru_02"
+  character_name: "Haru"
+  avatar: "haru.png"

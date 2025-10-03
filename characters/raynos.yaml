@@ -1,0 +1,6 @@
+character_config:
+  conf_name: "RAYNOS-chan (SDK 3)"
+  conf_uid: "raynos-001"
+  live2d_model_name: "raynos"
+  character_name: "RAYNOS-chan"
+  avatar: "raynos.png"

@@ -1,0 +1,6 @@
+character_config:
+  conf_name: "Kato Megumi"
+  conf_uid: "kato-001"
+  live2d_model_name: "kato"
+  character_name: "Kato"
+  avatar: "kato.png"

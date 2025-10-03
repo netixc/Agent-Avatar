@@ -1,0 +1,128 @@
+# ============================================================================
+# SYSTEM CONFIGURATION
+# ============================================================================
+system_config:
+  conf_version: 'v1.1.1'
+  host: "0.0.0.0"
+  port: 12393
+  config_alts_dir: "characters"
+
+  agent_zero_enabled: true
+  agent_zero_url: "http://192.168.50.XX:50080"
+  # Conversation context/session ID for Agent-Zero
+  # This is just a session identifier, not related to which agent profile you use
+  # Agent profile is selected in the Agent-Zero web UI
+  agent_zero_context_id: "avatar_session"
+
+  tool_prompts:
+    live2d_expression_prompt: "live2d_expression_prompt"
+  group_conversation_prompt: "group_conversation_prompt"
+# ============================================================================
+# CHARACTER CONFIGURATION
+# ============================================================================
+character_config:
+  conf_name: "unified-vtube"
+  conf_uid: "unified-vtube-001"
+  live2d_model_name: "shizuku"        # CHANGE LIVE2D_MODEL SWITCH ABOVE
+  character_name: "VTube AI"          # CHANGE CHARACTER_NAME SWITCH ABOVE
+  avatar: "shizuku.png"
+  human_name: "Human"
+
+  # Agent-Zero handles personality and emotions via its own prompt system
+  persona_prompt: "Agent-Zero manages personality and emotions directly"
+
+  # ============================================================================
+  # AGENT CONFIGURATION
+  # ============================================================================
+  agent_config:
+    conversation_agent_choice: "basic_memory_agent"
+
+    agent_settings:
+      basic_memory_agent:
+        llm_provider: "agent_zero_llm"
+        faster_first_response: true
+        segment_method: "pysbd"
+        tts_enabled: false
+
+    # LLM Configurations
+    llm_configs:
+      agent_zero_llm:
+        system_prompt: "You are a helpful assistant with emotional awareness."
+        interrupt_method: "user"
+
+  # ============================================================================
+  # ASR (SPEECH RECOGNITION) CONFIGURATION
+  # ============================================================================
+  asr_config:
+    asr_model: "faster_whisper"
+
+    faster_whisper:
+      model_path: "distil-medium.en"
+      download_root: "models/whisper"
+      language: "en"
+      device: "auto"
+
+    whisper_cpp:
+      model_name: "ggml-base.en.bin"
+      model_dir: "models/whisper_cpp"
+      print_realtime: false
+      print_progress: false
+      language: "auto"
+
+  # ============================================================================
+  # TTS (TEXT-TO-SPEECH) CONFIGURATION
+  # ============================================================================
+  tts_config:
+    tts_model: "openai_tts"
+
+    openai_tts:
+      model: 'kokoro'
+      voice: 'af_v0irulan+af_bella'
+      api_key: 'not-needed'
+      base_url: 'http://192.168.50.XX:8880/v1'
+      file_extension: 'mp3'
+      response_format: 'mp3'
+      speed: 1.0
+      timeout: 30
+
+  # ============================================================================
+  # VAD (VOICE ACTIVITY DETECTION)
+  # ============================================================================
+  vad_config:
+    vad_model: "silero_vad"
+    silero_vad:
+      orig_sr: 16000
+      target_sr: 16000
+      prob_threshold: 0.4
+      db_threshold: 60
+      required_hits: 3
+      required_misses: 24
+      smoothing_window: 5
+
+  # ============================================================================
+  # TTS PREPROCESSOR CONFIGURATION
+  # ============================================================================
+  tts_preprocessor_config:
+    remove_special_char: true
+    ignore_brackets: true
+    ignore_parentheses: true
+    ignore_asterisks: true
+    ignore_angle_brackets: true
+
+    translator_config:
+      translate_audio: false
+      translate_provider: "deeplx"
+
+      deeplx:
+        deeplx_target_lang: "JA"
+        deeplx_api_endpoint: "http://localhost:1188/v2/translate"
+# ============================================================================
+# LOGGING CONFIGURATION
+# ============================================================================
+# Note: Twitch integration is configured in Agent-Zero at:
+#       /agent-zero-data/agents/twitch_avatar_agent/twitch_config.yaml
+# ============================================================================
+log_config:
+  log_level: "INFO"
+  rotation: "100 MB"
+  retention: "7 days"

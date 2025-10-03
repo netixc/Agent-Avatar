@@ -1,0 +1,6 @@
+character_config:
+  conf_name: "Liko Outfit 7"
+  conf_uid: "liko_07-001"
+  live2d_model_name: "liko_07"
+  character_name: "Liko"
+  avatar: "liko.png"
